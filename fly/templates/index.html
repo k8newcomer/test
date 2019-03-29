@@ -1,0 +1,227 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'userinput/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'userinput/pure-min.css' %}">
+<img src="{% static "userinput/fly.gif" %} alt="My image">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Open Genomics : Genome Enhancer</title>
+</head>
+<body>
+
+<div class="header">
+  <img src="fly.gif">
+  <strong>merMER</strong>
+  <p>This program enables you to search entire genomes for clusters of DNA sequences</p>
+</div>
+
+<form class="pure-form pure-form-aligned" action="">
+  <fieldset>
+    <legend>Search</legend>
+
+    <div class="pure-control-group">
+      <label for="genome">Genome: </label>
+      <select id="genome" name="genome">
+        <option value="dm6">D. melanogaster</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="sequences">
+        Sequence(s):
+        <span class="pure-form-message">One sequence per line</span>
+      </label>
+      <textarea cols="30" id="sequences" name="sequences" rows="2"></textarea>
+    </div>
+
+    <div class="pure-controls">
+      <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Restrictions (Optional):</legend>
+
+    <div class="pure-control-group">
+      <label for="chr-restrict">Chromosome restrict:</label>
+      <select id="chr-restrict" name="chr-restrict">
+        <option value="chr-restrict-x">X</option>
+        <option value="chr-restrict-2l">2L</option>
+        <option value="chr-restrict-2r">2R</option>
+        <option value="chr-restrict-3l">3L</option>
+        <option value="chr-restrict-4">4</option>
+        <option value="chr-restrict-3r">3R</option>
+        <option value="chr-restrict-y">Y</option>
+        <option value="chr-restrict-mb">MB</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="terms" class="pure-checkbox">Domain restrict:</label>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="5-prime" type="checkbox"> 5'
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="5-prime-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="3-prime" type="checkbox"> 3'
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="3-prime-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="utr" type="checkbox"> UTR
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="utr-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="cds" type="checkbox"> CDS
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="cds-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="exon" type="checkbox"> Exon
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="exon-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="intron" type="checkbox"> Intron
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="intron-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="gene" type="checkbox"> Gene
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="gene-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="intergenic" type="checkbox"> Intergenic
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="intergenic-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="terms" class="pure-checkbox">Domain exclude:</label>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="5-prime" type="checkbox"> 5'
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="5-prime-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+
+        <p>...</p>
+      </div>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="search-mode">Search mode:</label>
+      <select id="search-mode" name="search-mode">
+        <option value="search-mode-sequences">Sequences</option>
+        <option value="search-mode-clusters">Clusters</option>
+      </select>
+    </div>
+
+    <div id="cluster-params-group" hidden>
+      <legend>Cluster parameters:</legend>
+
+      <div class="pure-control-group">
+        <label for="number-of-hits">Has</label>
+        <select id="number-of-hits-mode" name="number-of-hits-mode">
+          <option value="min">At least</option>
+          <option value="max">At most</option>
+        </select>
+        <input name="number-of-hits" type="number" value="0">
+        <label for="number-of-hits">hits</label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="window-size">Within a</label>
+        <input name="window-size" type="number" value="0">
+        <label for="window-size">BP window</label>
+      </div>
+    </div>
+
+    <div id="params-for-each-cluster">
+    </div>
+  </fieldset>
+</form>
+
+<link rel="stylesheet" href="pure-min.css">
+<link rel="stylesheet" href="style.css">
+
+<script src="index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'userinput/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'userinput/pure-min.css' %}">
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Open Genomics : Genome Enhancer</title>
+</head>
+<body>
+
+<div class="header">
+  <img src="fly.gif">
+  <strong>merMER</strong>
+  <p>This program enables you to search entire genomes for clusters of DNA sequences</p>
+</div>
+
+<form class="pure-form pure-form-aligned" action="">
+  <fieldset>
+    <button type="submit" class="pure-button pure-button-primary">Save search</button>
+    <button type="submit" class="pure-button pure-button-primary">Download log</button>
+    <button type="submit" class="pure-button pure-button-primary">Download hits</button>
+  </fieldset>
+</form>
+
+<h3>Summary</h3>
+
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Search</th>
+      <th>Seq</th>
+      <th>Introns</th>
+      <th>Exons</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Seq 1</td>
+    <td>GAGA</td>
+    <td>10</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Seq 2</td>
+    <td>TATA</td>
+    <td>3</td>
+    <td>1</td>
+  </tr>
+</table> 
+
+<form class="pure-form pure-form-aligned" action="">
+  <fieldset>
+    <legend>Restrictions:</legend>
+
+    <div class="pure-control-group">
+      <label for="chr-restrict">Chromosome restrict:</label>
+      <select id="chr-restrict" name="chr-restrict">
+        <option value="chr-restrict-x">X</option>
+        <option value="chr-restrict-2l">2L</option>
+        <option value="chr-restrict-2r">2R</option>
+        <option value="chr-restrict-3l">3L</option>
+        <option value="chr-restrict-4">4</option>
+        <option value="chr-restrict-3r">3R</option>
+        <option value="chr-restrict-y">Y</option>
+        <option value="chr-restrict-mb">MB</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="terms" class="pure-checkbox">Domain restrict:</label>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="5-prime" type="checkbox"> 5'
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="5-prime-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+      </div>
+
+      <p>...</p>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="terms" class="pure-checkbox">Domain exclude:</label>
+
+      <div class="pure-control-group">
+        <label for="terms" class="pure-checkbox">
+          <input id="5-prime" type="checkbox"> 5'
+        </label>
+        <label for="terms">
+          within
+        </label>
+        <input name="5-prime-within" type="number" value="0">
+        <label for="terms">
+          BP
+        </label>
+
+        <p>...</p>
+      </div>
+    </div>
+
+    <div class="pure-control-group">
+      <label for="search-mode">Search mode:</label>
+      <select id="search-mode" name="search-mode">
+        <option value="search-mode-sequences">Sequences</option>
+        <option value="search-mode-clusters">Clusters</option>
+      </select>
+    </div>
+
+    <div id="cluster-params-group" hidden>
+      <legend>Cluster parameters:</legend>
+
+      <div class="pure-control-group">
+        <label for="number-of-hits">Has</label>
+        <select id="number-of-hits-mode" name="number-of-hits-mode">
+          <option value="min">At least</option>
+          <option value="max">At most</option>
+        </select>
+        <input name="number-of-hits" type="number" value="0">
+        <label for="number-of-hits">hits</label>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="window-size">Within a</label>
+        <input name="window-size" type="number" value="0">
+        <label for="window-size">BP window</label>
+      </div>
+    </div>
+
+    <div id="params-for-each-cluster">
+    </div>
+  </fieldset>
+</form>
+
+
+
+<link rel="stylesheet" href="pure-min.css">
+<link rel="stylesheet" href="style.css">
+
+</body>
+</html>
